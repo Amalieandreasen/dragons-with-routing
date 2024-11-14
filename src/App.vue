@@ -1,6 +1,13 @@
 <script setup>
+import { RouterView } from "vue-router";
 import {ref} from "vue";
+
+// components
 import dragonData from "@/assets/js/dragons.js";
+import TheNav from "./components/TheNav.vue";
+import TheHeader from "./components/TheHeader.vue";
+
+// state
 const dragons = ref(dragonData);
 // 0. Inden vi starter så vær opmærksom på at følgende ting ER sket inden I arbejder videre med dette projekt:
 // 0.1. Der er opsat en ny vue app MED router
@@ -45,37 +52,14 @@ const dragons = ref(dragonData);
 </script>
 
 <template>
-  <header>
-    <h1>D&D website</h1>
-    <h2>
-      Your source for DnD dragons. Providing dragon information since 2021.<br />
-      Find info about <span>20</span> dragons here.
-    </h2>
-  </header>
-  <nav>
-    <!-- Links til ting her! -->
-  </nav>
-  <main><!-- Her skal vi vise vores "undersider" --></main>
+  <TheHeader />
+ <TheNav/>
+  <main><!-- Her skal vi vise vores "undersider" -->
+    <router-view :dragons="dragons"></router-view>
+  </main>
 </template>
 
 <style scoped>
-header {
-  text-align: center;
-  min-height: 60vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9)), url("@/assets/img/bg_dragon.jpg");
-  background-size: cover;
-  display: grid;
-  place-content: center;
-  color: white;
-}
-
-h1 {
-  font-size: 4rem;
-}
-
-span {
-  color: crimson;
-}
 
 main {
   max-width: 1000px;
